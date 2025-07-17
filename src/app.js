@@ -2,16 +2,23 @@ const express = require('express');
 
 const app = express();
 
-app.get("/test", (req, res) => {
+app.get("/user", (req, res) => {
+  res.send({firstname: "Aditya", lastname: "Mohan Gupta", age: 20});
+});
+
+app.post("/user", (req, res) => {
+  // perform db operation to save user
+  res.send("data saved to database");
+});
+
+app.delete("/user", (req, res) => {
+  // perform db operation to delete user
+  res.send("user deleted");
+});
+
+//matches all api calls to test
+app.use("/test", (req, res) => {
   res.send('Test, hello!');
-});
-
-app.get("/hello", (req, res) => {
-  res.send('Hello, Hello, Hello!');
-});
-
-app.get("/", (req, res) => {
-  res.send('Hello, World!');
 });
 
 app.listen(3000, () => {
