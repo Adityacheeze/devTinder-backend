@@ -62,5 +62,41 @@
     res.send("Hello World");
   });
   ```
+# Node 4
+  - seting up routes
+  - order of routes matter
+  - installing and seting up postman
+  - use of ?, +, (), * in routes
+  - use of regex in routes /a/, /.fly$/
+  - reading query params
+  - reading dynamic routes
+
+### Routing Expression
+  - `*` => any string. eg => `/a*c`
+  - `+` => repeat the prev char or string if `()` are used. eg => `/ab+c`
+  - `?` => optional char. eg => `ab?c`
+  - `()` => group multiple char to apply a common operation. eg => `a(ab)+c`
+  - `/a/` => write any regex. eg => `/.fly$/`
+  - `$` => end of string in regex.
+
+### Dynamic Routing 
+  1. Using req.query : <br>
+  Path => `http://localhost:3000/user?userID=777&password=test` <br>
+  Method => `req.query`
+  ```
+  app.get("/user", (req, res) => {
+    console.log(req.query)
+  });
+  ```
+  2. Using req.params : <br>
+  Path => `http://localhost:3000/user/:userID/:password` <br>
+  Method => `req.params`
+  ```
+   app.get("/user/:userID/:password", (req, res) => {
+    console.log(req.params)
+  });
+  ```
+     
+
    
     
