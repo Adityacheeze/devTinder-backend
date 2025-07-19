@@ -47,6 +47,16 @@ app.use(
   }
 );
 
+// error handling 
+app.get("/getDummyError", (req, res) => {
+  throw new Error("Dummy error occurred");
+  res.send("code");
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send("An error occurred");
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

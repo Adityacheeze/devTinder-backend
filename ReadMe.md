@@ -121,11 +121,11 @@
 
 ```
 
-### MiddleWares 
+### MiddleWare Authentication 
   - We can use Middlewares to reduce code redundency and perform all the authentication checks in the `/admin` middleware.
   - if the admin is verified then only it will move to the next route handler
   - else it will show error.
-  
+
   ```
   // autentication using middleware
   app.use("/admin", (req, res, next) => {
@@ -149,6 +149,22 @@
     res.send("User deleted");
   })
   ```
+
+### Wildcard Error Handling 
+  - If even after applying try catch some unexpected error occurs in our application.
+  - This error can be detected by *"wildcard"* **Error Handler MiddleWare**.
+  ```
+    // error handling 
+    app.get("/getDummyError", (req, res) => {
+      throw new Error("Dummy error occurred");
+      res.send("code");
+    });
+
+    app.use((err, req, res, next) => {
+      res.status(500).send("An error occurred");
+    });
+  ```
+
 
    
     
