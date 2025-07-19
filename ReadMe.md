@@ -7,9 +7,8 @@
   - write req handlers /test, / user
   - intalled nodemon and update scripts inside package.json
   - dependencies 
-  <br>
 ### Version Names 
-  `4.3.5 => major no | minor no | patch no`
+  `4.3.5` => `major no | minor no | patch no` <br>
   - `-g` => install in global scope <br>
   - `^`  => `Caret` : 	Patch updates allowed <br>
   - `~`  => `Tilde`  :  Minor + patch updates allowed <br>
