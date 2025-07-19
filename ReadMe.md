@@ -175,5 +175,18 @@
   - Install MongoDB and create a free cluster
   - Install Mongoose
   - Connect to database and then start your application
+  - Creating UserSchema & UserModel
+  - created POST signup API to add data to database
+
+### Connecting to Database via Mongoose
+  ```
+  const mongoose = require("mongoose");
+  const connectDB = async () => {
+    await mongoose.connect("databseconnectionstring");
+  };
+
+  module.exports = connectDB;
+  ```
+  - In the app.js remember to connect the database first before starting the server
    
     
