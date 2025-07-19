@@ -1,6 +1,18 @@
 const express = require("express");
-
+const {userAuth, adminAuth} = require("./middlewares/Auth");
 const app = express();
+
+// autentication using middleware
+app.use("/admin", adminAuth);
+app.use("/user", userAuth);
+
+app.get("/admin/getAllData", (req, res, next) => {
+  res.send("All Data");
+})
+
+app.delete("/admin/deleteUser", (req, res, next) => {
+  res.send("User deleted");
+})
 
 app.get("/user", (req, res) => {
   res.send({ firstname: "Aditya", lastname: "Mohan Gupta", age: 20 });
@@ -22,16 +34,16 @@ app.use(
   (req, res, next) => {
     console.log("Test endpoint hit");
     // res.send("Test, hello!");
-    next(); // call the next handler
+    next(); // call the middleware chain
   },
   (req, res, next) => {
     console.log("2nd Test endpoint hit");
     // res.send("Test 2, hello!");
-    next();
+    next(); // call the next middleware
   },
   (req, res, next) => {
     console.log("3rd Test endpoint hit");
-    res.send("Test 3, hello!");
+    res.send("Test 3, hello!"); // final response handler
   }
 );
 

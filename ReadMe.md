@@ -106,20 +106,49 @@
   (req, res, next) => {
     console.log("Test endpoint hit");
     // res.send("Test, hello!");
-    next(); // call the next handler
+    next(); // call the middleware chain
   },
   (req, res, next) => {
     console.log("2nd Test endpoint hit");
     // res.send("Test 2, hello!");
-    next();
+    next(); // call the next middleware
   },
   (req, res, next) => {
     console.log("3rd Test endpoint hit");
-    res.send("Test 3, hello!");
+    res.send("Test 3, hello!"); // final response handler
   }
 );
 
 ```
+
+### MiddleWares 
+  - We can use Middlewares to reduce code redundency and perform all the authentication checks in the `/admin` middleware.
+  - if the admin is verified then only it will move to the next route handler
+  - else it will show error.
+  
+  ```
+  // autentication using middleware
+  app.use("/admin", (req, res, next) => {
+    console.log("admin authentication checking");
+    const token = "xyz";
+    const adminAuth = token === "xyz";
+    if(!adminAuth){
+      res.status(401).send("Unauthorized access");
+    }
+    else {
+      console.log("admin authenticated");
+      next(); // call the next middleware or route handler
+    }
+  })
+
+  app.get("/admin/getAllData", (req, res, next) => {
+    res.send("All Data");
+  })
+
+  app.delete("/admin/deleteUser", (req, res, next) => {
+    res.send("User deleted");
+  })
+  ```
 
    
     
