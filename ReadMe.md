@@ -96,6 +96,13 @@
   });
   ```
 # Node 5
+- Multiple Route Handlers
+- next() function and error associated with next
+- What is MiddleWare ?
+- difference between app.use() vs app.all() ?
+- Authentication using middlewares.
+- Error Handling using `app.use("/",(err, req, res, next) => {});`
+
 ### Multiple Route Handlers <br>
 - We can send multiple route handlers in a single route, but we have to make sure to send the response back only one time, because if we will not send the response back then it will be stuck in an infinite loop and if we will send multiple responses then it will give an error as after the first response is sent the connection is broken.
      
@@ -159,7 +166,7 @@
       res.send("code");
     });
 
-    app.use((err, req, res, next) => {
+    app.use("/", (err, req, res, next) => {
       res.status(500).send("An error occurred");
     });
   ```
