@@ -96,7 +96,30 @@
     console.log(req.params)
   });
   ```
+# Node 5
+### Multiple Route Handlers <br>
+- We can send multiple route handlers in a single route, but we have to make sure to send the response back only one time, because if we will not send the response back then it will be stuck in an infinite loop and if we will send multiple responses then it will give an error as after the first response is sent the connection is broken.
      
+```
+  app.use(
+  "/test",
+  (req, res, next) => {
+    console.log("Test endpoint hit");
+    // res.send("Test, hello!");
+    next(); // call the next handler
+  },
+  (req, res, next) => {
+    console.log("2nd Test endpoint hit");
+    // res.send("Test 2, hello!");
+    next();
+  },
+  (req, res, next) => {
+    console.log("3rd Test endpoint hit");
+    res.send("Test 3, hello!");
+  }
+);
+
+```
 
    
     
