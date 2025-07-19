@@ -1,6 +1,18 @@
 const express = require("express");
-const {userAuth, adminAuth} = require("./middlewares/Auth");
+const { userAuth, adminAuth } = require("./middlewares/Auth");
 const app = express();
+const connectDB = require("./config/database.js");
+
+connectDB()
+  .then(() => {
+    console.log("Database connected");
+    app.listen(3000, () => {
+      console.log("Server is running on port 3000");
+    });
+  })
+  .catch((err) => {
+    console.error("Database connection failed:", err);
+  });
 
 // autentication using middleware
 app.use("/admin", adminAuth);
@@ -8,11 +20,11 @@ app.use("/user", userAuth);
 
 app.get("/admin/getAllData", (req, res, next) => {
   res.send("All Data");
-})
+});
 
 app.delete("/admin/deleteUser", (req, res, next) => {
   res.send("User deleted");
-})
+});
 
 app.get("/user", (req, res) => {
   res.send({ firstname: "Aditya", lastname: "Mohan Gupta", age: 20 });
@@ -47,7 +59,7 @@ app.use(
   }
 );
 
-// error handling 
+// error handling
 app.get("/getDummyError", (req, res) => {
   throw new Error("Dummy error occurred");
   res.send("code");
@@ -55,8 +67,4 @@ app.get("/getDummyError", (req, res) => {
 
 app.use("/", (err, req, res, next) => {
   res.status(500).send("An error occurred");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
 });

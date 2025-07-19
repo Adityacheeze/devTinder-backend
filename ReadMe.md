@@ -171,6 +171,9 @@
     });
   ```
 
-
+# Node 6
+  - Install MongoDB and create a free cluster
+  - Install Mongoose
+  - Connect to database and then start your application
    
     
