@@ -97,6 +97,26 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+app.post("/login", async (req, res) => {
+  try {
+    const {email, password} = req.body;
+    const user = await User.findOne({email: email});
+    if(!user){
+      throw new Error("Email not found");
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if(!isPasswordValid){
+      throw new Error("Invalid password");
+    }
+    else{
+      res.send("Login successful");
+    }
+  } catch (error) {
+    res.status(500).send("Error Logging in: " + error.message);
+  }
+
+})
+
 connectDB()
   .then(() => {
     console.log("Database connected");

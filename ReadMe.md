@@ -248,3 +248,5 @@
   - Install bcrypt Library
   - Encrypt passwords using bcrypt.hash()
   - Store encrypted passwords in database
+  - Creted Post login API
+  - comapared password with hash in DB using bcrypt.compare()
