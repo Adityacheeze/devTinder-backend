@@ -236,3 +236,6 @@
   - Make /feed API to get all users in the DB
   - Make delete /user API to delete a user from DB
   - Make patch /user API to update a user in DB
+
+# Node 8
+  - Added Schema Level Validations

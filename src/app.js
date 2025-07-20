@@ -43,10 +43,12 @@ app.patch("/user", async (req, res) => {
   const userId = req.body.userId;
   const data = req.body;
   try {
-    await User.findByIdAndUpdate({_id : userId}, data);
+    await User.findByIdAndUpdate({_id : userId}, data, {
+      runValidators: true,
+    });
     res.send("User Updated Successfully");
   } catch (err) {
-    res.status(400).send("something went wrong");
+    res.status(400).send("something went wrong" + err.message);
   }
 });
 
@@ -57,7 +59,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.send("User created successfully");
   } catch (err) {
-    res.status(500).send("Error Creating user");
+    res.status(500).send("Error Creating user" + err.message);
   }
 });
 
