@@ -239,3 +239,6 @@
 
 # Node 8
   - Added Schema Level Validations
+  - Added API Level Validations
+  - Insatll Validator Library
+  - Used Validator for validation of password, email, photoURL.

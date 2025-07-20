@@ -9,8 +9,7 @@ app.get("/user", async (req, res) => {
   const userEmail = req.body.email;
   try {
     const user = await User.findOne({ email: userEmail });
-    if (!user)
-      res.status(404).send("No user found with this email");
+    if (!user) res.status(404).send("No user found with this email");
     else res.send(user);
   } catch (err) {
     res.status(400).send("something went wrong");
@@ -20,10 +19,9 @@ app.get("/user", async (req, res) => {
 app.get("/feed", async (req, res) => {
   try {
     const users = await User.find({});
-    if (users.length === 0)
-      res.status(404).send("No users found");
+    if (users.length === 0) res.status(404).send("No users found");
     else res.send(users);
-  }  catch (err) {
+  } catch (err) {
     res.status(400).send("something went wrong");
   }
 });
@@ -36,14 +34,36 @@ app.delete("/user", async (req, res) => {
   } catch (err) {
     res.status(400).send("something went wrong");
   }
-  
 });
 
-app.patch("/user", async (req, res) => {
-  const userId = req.body.userId;
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params.userId;
   const data = req.body;
   try {
-    await User.findByIdAndUpdate({_id : userId}, data, {
+    const ALLOWED_FIELDS = [
+      "firstName",
+      "lastName",
+      "password",
+      "age",
+      "gender",
+      "photoURL",
+      "about",
+      "skills",
+    ];
+    const ALLOWED_UPDATE = Object.keys(data).every((key) =>
+      ALLOWED_FIELDS.includes(key)
+    );
+    if (!ALLOWED_UPDATE) {
+      throw new Error("Invalid fields for update");
+    }
+    if(data?.skills.length > 10){
+      throw new Error("Skills cannot be more than 10");
+    }
+  } catch (err) {
+    res.status(400).send("Invalid update request: " + err.message);
+  }
+  try {
+    await User.findByIdAndUpdate({ _id: userId }, data, {
       runValidators: true,
     });
     res.send("User Updated Successfully");
@@ -62,7 +82,6 @@ app.post("/signup", async (req, res) => {
     res.status(500).send("Error Creating user" + err.message);
   }
 });
-
 
 connectDB()
   .then(() => {
