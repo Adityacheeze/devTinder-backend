@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/database.js");
 const User = require("./models/user.js");
+const { validateSignUp } = require("./utils/validation.js");
+const bcrypt = require("bcrypt");
 
 app.use(express.json());
 
@@ -56,7 +58,7 @@ app.patch("/user/:userId", async (req, res) => {
     if (!ALLOWED_UPDATE) {
       throw new Error("Invalid fields for update");
     }
-    if(data?.skills.length > 10){
+    if (data?.skills.length > 10) {
       throw new Error("Skills cannot be more than 10");
     }
   } catch (err) {
@@ -73,11 +75,23 @@ app.patch("/user/:userId", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const userObj = req.body;
-  const user = new User(userObj);
   try {
+    // validating req body
+    validateSignUp(req);
+    // encrypt password
+    const {firstName, lastName, email, password} = req.body; 
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      firstName : firstName,
+      lastName : lastName,
+      email : email,
+      password: passwordHash,
+    });
     await user.save();
+
     res.send("User created successfully");
+
   } catch (err) {
     res.status(500).send("Error Creating user" + err.message);
   }

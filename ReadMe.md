@@ -242,3 +242,9 @@
   - Added API Level Validations
   - Insatll Validator Library
   - Used Validator for validation of password, email, photoURL.
+
+# Node 9
+  - Add validation to signup using helper validation function
+  - Install bcrypt Library
+  - Encrypt passwords using bcrypt.hash()
+  - Store encrypted passwords in database
