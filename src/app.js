@@ -4,6 +4,30 @@ const connectDB = require("./config/database.js");
 const User = require("./models/user.js");
 
 app.use(express.json());
+
+app.get("/user", async (req, res) => {
+  const userEmail = req.body.email;
+  try {
+    const user = await User.findOne({ email: userEmail });
+    if (!user)
+      res.status(404).send("No user found with this email");
+    else res.send(user);
+  } catch (err) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+app.get("/feed", async (req, res) => {
+  try {
+    const users = await User.find({});
+    if (users.length === 0)
+      res.status(404).send("No users found");
+    else res.send(users);
+  }  catch (err) {
+    res.status(400).send("something went wrong");
+  }
+})
+
 app.post("/signup", async (req, res) => {
   const userObj = req.body;
   const user = new User(userObj);
@@ -13,7 +37,9 @@ app.post("/signup", async (req, res) => {
   } catch (err) {
     res.status(500).send("Error Creating user");
   }
-})
+});
+
+
 connectDB()
   .then(() => {
     console.log("Database connected");

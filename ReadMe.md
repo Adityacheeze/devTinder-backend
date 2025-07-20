@@ -228,4 +228,9 @@
     })
   ```
    
-    
+# Node 7
+  - JS object vs JSON object
+  - Add expree.json middleware
+  - Make /signup API dynamic to recieve data from end user and store it in DB
+  - Make /user API to get a user based on email ID from DB
+  - Make /feed API to get all users in the DB
