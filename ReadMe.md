@@ -188,5 +188,44 @@
   module.exports = connectDB;
   ```
   - In the app.js remember to connect the database first before starting the server
+
+### Creating User Schema & User Model
+  ```
+  const mongoose = require("mongoose");
+
+  const userSchema = new mongoose.Schema({
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    }, ....
+  });
+
+  const User = mongoose.model("User", userSchema);
+  module.exports = User;
+
+  ```
+
+### Creating Post API to send dummy data to DataBase
+  - The `app.use(express.json());` middleware is used to covert the JSON object from API to javascript object which can be easily ready by express.
+
+  ```
+    app.use(express.json()); // JSON to JS Object Conversion
+
+    app.post("/signup", async (req, res) => {
+      const userObj = req.body; // assume data in API body
+
+      // Creating an Instance of the User Model
+      const user = new User(userObj);
+
+      try {
+        await user.save();
+        res.send("User created successfully");
+      } catch (err) {
+        res.status(500).send("Error Creating user");
+      }
+    })
+  ```
    
     
