@@ -45,14 +45,12 @@ app.post("/login", async (req, res) => {
     if (!user) {
       throw new Error("Email not found");
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await user.validatePassword(password);
     if (!isPasswordValid) {
       throw new Error("Invalid password");
     } else {
       //generate JWT token
-      const token = jwt.sign({ _id: user._id }, "DEV@TINDER_SECRET6278", {
-        expiresIn: "1d",
-      });
+      const token = await user.getJWT();
 
       //add token to cookies
       res.cookie("token", token, {

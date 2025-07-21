@@ -240,7 +240,7 @@
 # Node 8
   - Added Schema Level Validations
   - Added API Level Validations
-  - Insatll Validator Library
+  - Insatall Validator Library
   - Used Validator for validation of password, email, photoURL.
 
 # Node 9
@@ -262,3 +262,17 @@
   - Create the UserAuth Middleware to authenticate the cookies 
   - Add the Middleware to profile API and sendConnectionRequest API
   - Set the expiry of cookie and jwt token
+  - Create userSchema method to get JWT token
+  - Create userSchema method to validate password
+
+### Schema Methods 
+  - While creating schema methods always use `normal functions` instead of arrow functions else it will not work
+  ```
+    userSchema.methods.getJWT = async function () {
+      const user = this;
+      const token = await jwt.sign({ _id: user._id }, "DEV@TINDER_SECRET6278", {
+            expiresIn: "1d",
+          });
+      return token;
+    };
+  ```
