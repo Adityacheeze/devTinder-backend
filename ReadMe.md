@@ -230,7 +230,7 @@
    
 # Node 7
   - JS object vs JSON object
-  - Add expree.json middleware
+  - Add express.json middleware
   - Make /signup API dynamic to recieve data from end user and store it in DB
   - Make get /user API to get a user based on email ID from DB
   - Make /feed API to get all users in the DB
@@ -250,3 +250,12 @@
   - Store encrypted passwords in database
   - Creted Post login API
   - comapared password with hash in DB using bcrypt.compare()
+
+# Node 10
+  - Add cookie-parser library
+  - Create Get /profile API
+  - Send dummy cookie and check it 
+  - Add jsonwebtoken library
+  - In /login API after validation create a jwt token and store it in the cookies
+  - read the cookie in /profile API and find out who is logged in.
+  - send data of logged in user
