@@ -249,7 +249,7 @@
   - Encrypt passwords using bcrypt.hash()
   - Store encrypted passwords in database
   - Creted Post login API
-  - comapared password with hash in DB using bcrypt.compare()
+  - Comapared password with hash in DB using bcrypt.compare()
 
 # Node 10
   - Add cookie-parser library
@@ -257,5 +257,8 @@
   - Send dummy cookie and check it 
   - Add jsonwebtoken library
   - In /login API after validation create a jwt token and store it in the cookies
-  - read the cookie in /profile API and find out who is logged in.
-  - send data of logged in user
+  - Read the cookie in /profile API and find out who is logged in.
+  - Send data of logged in user
+  - Create the UserAuth Middleware to authenticate the cookies 
+  - Add the Middleware to profile API and sendConnectionRequest API
+  - Set the expiry of cookie and jwt token
