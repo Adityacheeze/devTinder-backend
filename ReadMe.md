@@ -276,3 +276,23 @@
       return token;
     };
   ```
+
+# Node 11 
+  - Created API_List
+  - Created authRouter, profileRouter, requestRouter
+  - Added Routing for API's
+  - Imported Routers to app.js
+
+### Routing of API's
+  - Creating Router :-
+  ```
+    const express =  require("express");
+    const { userAuth } = require("../middlewares/Auth");
+
+    const requestRouter = express.Router();
+
+    requestRouter.post("/sendConnectionRequest", userAuth, async (req, res) => {...});
+    
+    module.exports = requestRouter;
+  ```
+  - Import Router by :- `app.use("/", requestRouter);`
