@@ -300,3 +300,40 @@
     module.exports = requestRouter;
   ```
   - Import Router by :- `app.use("/", requestRouter);`
+
+# Node 12
+  - Added POST /request/send/:status/:userId API to send a connection request and ignore a request.
+  - Adding Schema level pre() method
+  - Adding enums in gender in user schema
+  - Adding enums in status in connectionRequest Schema
+
+### enums in Schema 
+  - If we want to restrict the value of a field in the schema to a certain values we can use `enums` like this -> 
+
+  ```
+    status: {
+      type: String,
+      required: true,
+      enum: {
+        values: ["ignored", "interested", "accepted", "rejected"],
+        message: "{VALUE} is not a valid status",
+      },
+    },
+  ```
+
+### pre() method
+  - If we want to add schema level validation for a condition just before the occurance of an event (eg save()) we can use the `pre() method` which is called just before the event occurs.
+
+  - This method makes sure that the `fromUserId` and `toUserId` are not the same before saving the data in DB.
+
+  ```
+  connectionRequestSchema.pre("save", function (next) {
+    const connectionRequest = this;
+    if(connectionRequest.fromUserId.equals(connectionRequest.toUserId)) {
+      throw new Error("Invalid request, cannot send connection request to yourself");
+    }
+    next();
+  });
+  ```
+  - Make sure to use `normal function` not `arrow function` inside the pre method or else it will not work.
+  - Remember to call the `next()` function or else the code will not move forward
