@@ -30,4 +30,7 @@ const validateEditProfile = (req) => {
   return isEditAllowed;
 };
 
-module.exports = { validateSignUp, validateEditProfile };
+const validatePassword = (password) => {
+  return validator.isStrongPassword(password);
+}
+module.exports = { validateSignUp, validateEditProfile, validatePassword};

@@ -285,6 +285,7 @@
   - Created POST /logout API
   - Create ValidateEditProfile method in validations to validate the edit profile request
   - Created PATCH /profile/edit API
+  - Created PATCH /profile/password API 
 
 ### Routing of API's
   - Creating Router :-
