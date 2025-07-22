@@ -1,12 +1,12 @@
 # Node 3
-  - created a repository
-  - initialized the repo
+  - Created a repository
+  - Initialized the repo
   - node_modules vs package.json vs package-lock.json
-  - install and create an express server
-  - listen on port 3000
-  - write req handlers /test, / user
-  - intalled nodemon and update scripts inside package.json
-  - dependencies 
+  - Install and create an express server
+  - Listen on port 3000
+  - Write req handlers /test, / user
+  - Intalled nodemon and update scripts inside package.json
+  - Dependencies 
 ### Version Names 
   `4.3.5` => `major no | minor no | patch no` <br>
   - `-g` => install in global scope <br>
@@ -62,13 +62,13 @@
   });
   ```
 # Node 4
-  - seting up routes
-  - order of routes matter
-  - installing and seting up postman
-  - use of ?, +, (), * in routes
-  - use of regex in routes /a/, /.fly$/
-  - reading query params
-  - reading dynamic routes
+  - Seting up routes
+  - Order of routes matter
+  - Installing and seting up postman
+  - Use of ?, +, (), * in routes
+  - Use of regex in routes /a/, /.fly$/
+  - Reading query params
+  - Reading dynamic routes
 
 ### Routing Expression
   - `*` => any string. eg => `/a*c`
@@ -99,7 +99,7 @@
 - Multiple Route Handlers
 - next() function and error associated with next
 - What is MiddleWare ?
-- difference between app.use() vs app.all() ?
+- Difference between app.use() vs app.all() ?
 - Authentication using middlewares.
 - Error Handling using `app.use("/",(err, req, res, next) => {});`
 
@@ -176,7 +176,7 @@
   - Install Mongoose
   - Connect to database and then start your application
   - Creating UserSchema & UserModel
-  - created POST signup API to add data to database
+  - Created POST signup API to add data to database
 
 ### Connecting to Database via Mongoose
   ```
@@ -248,7 +248,7 @@
   - Install bcrypt Library
   - Encrypt passwords using bcrypt.hash()
   - Store encrypted passwords in database
-  - Creted Post login API
+  - Created Post login API
   - Comapared password with hash in DB using bcrypt.compare()
 
 # Node 10
@@ -266,7 +266,7 @@
   - Create userSchema method to validate password
 
 ### Schema Methods 
-  - While creating schema methods always use `normal functions` instead of arrow functions else it will not work
+  - While creating schema methods always use `normal functions` instead of `arrow functions` else it will not work
   ```
     userSchema.methods.getJWT = async function () {
       const user = this;
