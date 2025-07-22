@@ -176,7 +176,7 @@
   - Install Mongoose
   - Connect to database and then start your application
   - Creating UserSchema & UserModel
-  - Created POST signup API to add data to database
+  - Created POST /signup API to add data to database
 
 ### Connecting to Database via Mongoose
   ```
@@ -232,10 +232,10 @@
   - JS object vs JSON object
   - Add express.json middleware
   - Make /signup API dynamic to recieve data from end user and store it in DB
-  - Make get /user API to get a user based on email ID from DB
-  - Make /feed API to get all users in the DB
-  - Make delete /user API to delete a user from DB
-  - Make patch /user API to update a user in DB
+  - Make GET /user API to get a user based on email ID from DB
+  - Make GET /feed API to get all users in the DB
+  - Make DELETE /user API to delete a user from DB
+  - Make PATCH /user API to update a user in DB
 
 # Node 8
   - Added Schema Level Validations
@@ -248,20 +248,20 @@
   - Install bcrypt Library
   - Encrypt passwords using bcrypt.hash()
   - Store encrypted passwords in database
-  - Created Post login API
+  - Created POST login API
   - Comapared password with hash in DB using bcrypt.compare()
 
 # Node 10
   - Add cookie-parser library
-  - Create Get /profile API
+  - Create GET /profile API
   - Send dummy cookie and check it 
   - Add jsonwebtoken library
   - In /login API after validation create a jwt token and store it in the cookies
   - Read the cookie in /profile API and find out who is logged in.
   - Send data of logged in user
   - Create the UserAuth Middleware to authenticate the cookies 
-  - Add the Middleware to profile API and sendConnectionRequest API
-  - Set the expiry of cookie and jwt token
+  - Add the Middleware to /profile API and sendConnectionRequest API
+  - Set the expiry of cookie and JWT token
   - Create userSchema method to get JWT token
   - Create userSchema method to validate password
 
@@ -282,6 +282,9 @@
   - Created authRouter, profileRouter, requestRouter
   - Added Routing for API's
   - Imported Routers to app.js
+  - Created POST /logout API
+  - Create ValidateEditProfile method in validations to validate the edit profile request
+  - Created PATCH /profile/edit API
 
 ### Routing of API's
   - Creating Router :-
