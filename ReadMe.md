@@ -370,3 +370,21 @@
   - Added POST /request/review/:status/:requestId API to accept or reject an incoming connection request.
   - Linking two collections using `ref` and `populate`
   - Create GET /user/requests/received API
+  - Create GET /user/connections API
+
+### Using refs to interlink two collections 
+
+  ```
+    fromUserId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+  ```
+
+### Using populate of access data of other collection 
+  ```
+  .populate("fromUserId", "firstName lastName photoURL");
+  
+  .populate("fromUserId", ["firstName", "lastName", "photoURL"]);
+  ```
