@@ -388,3 +388,6 @@
   
   .populate("fromUserId", ["firstName", "lastName", "photoURL"]);
   ```
+
+# Node 14 
+  - Create GET /user/feed API
