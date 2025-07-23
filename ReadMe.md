@@ -322,7 +322,7 @@
       },
     },
   ```
-  
+
 ### Logical Query Operator to check for multiple conditions simultaneously
   - `$or, $and, $not, $nor`
   ```
@@ -365,3 +365,6 @@
   ```
   connectionRequestSchema.index({ fromUserId: 1, toUserId: 1});
   ```
+
+# Node 13
+  - Added POST POST /request/review/:status/:requestId API to accept or reject an incoming connection request.
