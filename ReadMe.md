@@ -367,4 +367,6 @@
   ```
 
 # Node 13
-  - Added POST POST /request/review/:status/:requestId API to accept or reject an incoming connection request.
+  - Added POST /request/review/:status/:requestId API to accept or reject an incoming connection request.
+  - Linking two collections using `ref` and `populate`
+  - Create GET /user/requests/received API
