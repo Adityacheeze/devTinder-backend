@@ -306,6 +306,8 @@
   - Adding Schema level pre() method
   - Adding enums in gender in user schema
   - Adding enums in status in connectionRequest Schema
+  - Using Logical Query Operator `{ $or, $and, $not, $nor }` in find() method to check for multiple conditions simultaneously 
+  - Adding Index in connectionRequest Schema to optimize search query performance
 
 ### enums in Schema 
   - If we want to restrict the value of a field in the schema to a certain values we can use `enums` like this -> 
@@ -319,6 +321,17 @@
         message: "{VALUE} is not a valid status",
       },
     },
+  ```
+  
+### Logical Query Operator to check for multiple conditions simultaneously
+  - `$or, $and, $not, $nor`
+  ```
+  const existingRequest = await ConnectionRequestModel.findOne({
+    $or: [
+      { fromUserId, toUserId },
+      { fromUserId: toUserId, toUserId: fromUserId },
+    ],
+  });
   ```
 
 ### pre() method
@@ -337,3 +350,18 @@
   ```
   - Make sure to use `normal function` not `arrow function` inside the pre method or else it will not work.
   - Remember to call the `next()` function or else the code will not move forward
+
+### Indexing in Schema 
+  - If your application is repeatedly running queries on the same fields, you can create an index on those fields to improve performance.
+  - Although `indexes improve query performance`, adding an index has `negative performance impact for write operations`.
+  - For collections with a **high write-to-read ratio**, *indexes are expensive because each insert must also update any indexes*.
+  - MongoDB indexes use a `B-tree` data structure.
+
+  - **Simple Indexing** -> 
+  ```
+  userSchema.index({ firstName: 1});
+  ```
+  - **Compound Indexing** -> 
+  ```
+  connectionRequestSchema.index({ fromUserId: 1, toUserId: 1});
+  ```
