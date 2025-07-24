@@ -444,3 +444,37 @@ connectionRequestSchema.index({ fromUserId: 1, toUserId: 1});
 
 - Create GET /user/feed API 
 - Adding Pagination to feed API using `skip() & limit()` methods
+
+
+# Connecting to Front End
+
+- Install Cors in backend
+- In Backend => use cors middleware with `origin set up` and `credentials = true`
+- In Frontend while making the API call pass `withCredentials = true`
+
+### Solving CORS error
+- In Backend => `use cors middleware` with `origin set up` and `credentials = true`
+
+```
+app.use(
+  cors(
+    {
+      origin: "http://localhost:5173",
+      credentials: true,
+    }
+  )
+);
+```
+
+- In Frontend while making the API call in `axios` pass `withCredentials = true`
+
+```
+const res = axios.post(
+  "http://localhost:3000/login",
+  {
+    email,
+    password,
+  },
+  { withCredentials: true }
+);
+```
