@@ -47,8 +47,8 @@ requestRouter.post(
       res.json({
         message: `${
           status == "interested"
-            ? ` ${req.user.firstName} Sent a Connection Request to ${toUserIdValid.firstName}`
-            : ` ${req.user.firstName} Ignored ${toUserIdValid.firstName}`
+            ? `${req.user.firstName} Sent a Connection Request to ${toUserIdValid.firstName}`
+            : `${req.user.firstName} Ignored ${toUserIdValid.firstName}`
         }`,
         data,
       });
