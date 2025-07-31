@@ -74,4 +74,19 @@ userRouter.get("/user/feed", userAuth, async (req, res) => {
   }
 });
 
+userRouter.post("/user/delete", userAuth, async (req, res) => {
+  try {
+    const loggedInUser = req.user;
+    await User.deleteMany({_id: loggedInUser._id});
+    await ConnectionRequestModel.deleteMany({
+      $or: [{ fromUserId: loggedInUser._id }, { toUserId: loggedInUser._id }],
+    })
+    res.cookie("token", null, {
+      expires: new Date(Date.now()),
+    });
+    res.send("User Deleted Successfull");
+  } catch (error) {
+    res.status(500).send("Error Deleting User " + error.message);
+  }
+})
 module.exports = userRouter;

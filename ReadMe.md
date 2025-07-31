@@ -421,6 +421,7 @@ connectionRequestSchema.index({ fromUserId: 1, toUserId: 1});
 - Linking two collections using `ref` and `populate`
 - Create GET /user/requests/received API
 - Create GET /user/connections API
+- Create POST /user/delete API 
 
 ### Using refs to interlink two collections
 
